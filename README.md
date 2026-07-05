@@ -103,6 +103,7 @@ fssai-verification/
 ├── includes/
 │   ├── footer.php         # Common footer
 │   └── header.php         # Common header
+
 ├── index.php              # Landing page
 ├── report.php             # Report fake license form
 └── verify.php             # Verification results page
