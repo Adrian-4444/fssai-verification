@@ -52,7 +52,7 @@ Waiting for test...
         console.log('Sending request to API...');
         console.log('License:', license);
 
-        fetch('backend/verify-license.php', {
+        fetch('api/verify-license.php', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

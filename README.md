@@ -87,7 +87,7 @@ fssai-verification/
 │   ├── login.php          # Admin login
 │   ├── logout.php         # Logout handler
 │   └── view-report.php    # View report details
-├── backend/
+├── api/
 │   ├── submit-report.php  # Report submission endpoint
 │   └── verify-license.php # License verification endpoint
 ├── assets/
@@ -141,7 +141,7 @@ Password: admin123
 
 ### Verify License
 
-**POST** `/backend/verify-license.php`
+**POST** `/api/verify-license.php`
 
 ```json
 {
@@ -176,7 +176,7 @@ Password: admin123
 
 ### Submit Report
 
-**POST** `/backend/submit-report.php`
+**POST** `/api/submit-report.php`
 
 ```json
 {
