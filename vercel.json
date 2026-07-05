@@ -11,6 +11,10 @@
       "handle": "filesystem"
     },
     {
+      "src": "/",
+      "dest": "/index.php"
+    },
+    {
       "src": "/(.*)",
       "dest": "/$1"
     }
