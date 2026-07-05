@@ -37,59 +37,59 @@ Waiting for test...
 </div>
 
 <script>
-document.getElementById('testForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-    
-    const license = document.getElementById('license').value;
-    const responseEl = document.getElementById('response');
-    const timingEl = document.getElementById('timing');
-    
-    responseEl.textContent = 'Testing API...\n';
-    
-    const startTime = performance.now();
-    timingEl.innerHTML = `<strong>Start Time:</strong> ${new Date().toLocaleTimeString()}<br>Request in progress...`;
-    
-    console.log('Sending request to API...');
-    console.log('License:', license);
-    
-    fetch('api/verify-license.php', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-            license_number: license,
-            input_method: 'Manual'
+    document.getElementById('testForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        const license = document.getElementById('license').value;
+        const responseEl = document.getElementById('response');
+        const timingEl = document.getElementById('timing');
+
+        responseEl.textContent = 'Testing API...\n';
+
+        const startTime = performance.now();
+        timingEl.innerHTML = `<strong>Start Time:</strong> ${new Date().toLocaleTimeString()}<br>Request in progress...`;
+
+        console.log('Sending request to API...');
+        console.log('License:', license);
+
+        fetch('backend/verify-license.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                license_number: license,
+                input_method: 'Manual'
+            })
         })
-    })
-    .then(response => {
-        const endTime = performance.now();
-        const duration = (endTime - startTime).toFixed(2);
-        
-        console.log('Response received!');
-        console.log('Status:', response.status);
-        console.log('Headers:', response.headers);
-        console.log('Duration:', duration, 'ms');
-        
-        timingEl.innerHTML = `<strong>Status:</strong> ${response.status}<br>
-                              <strong>Duration:</strong> ${duration}ms<br>
-                              <strong>Content-Type:</strong> ${response.headers.get('Content-Type')}`;
-        
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        return response.json();
-    })
-    .then(data => {
-        console.log('JSON parsed successfully!');
-        console.log('Data:', data);
-        responseEl.textContent = JSON.stringify(data, null, 2);
-    })
-    .catch(error => {
-        console.error('Error:', error);
-        responseEl.textContent = 'ERROR: ' + error.message + '\n\n' + error.stack;
+        .then(response => {
+            const endTime = performance.now();
+            const duration = (endTime - startTime).toFixed(2);
+
+            console.log('Response received!');
+            console.log('Status:', response.status);
+            console.log('Headers:', response.headers);
+            console.log('Duration:', duration, 'ms');
+
+            timingEl.innerHTML = `<strong>Status:</strong> ${response.status}<br>
+                                  <strong>Duration:</strong> ${duration}ms<br>
+                                  <strong>Content-Type:</strong> ${response.headers.get('Content-Type')}`;
+
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log('JSON parsed successfully!');
+            console.log('Data:', data);
+            responseEl.textContent = JSON.stringify(data, null, 2);
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            responseEl.textContent = 'ERROR: ' + error.message + '\n\n' + error.stack;
+        });
     });
-});
 </script>
 
 <?php require_once 'includes/footer.php'; ?>

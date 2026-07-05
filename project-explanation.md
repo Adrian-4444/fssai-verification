@@ -29,7 +29,7 @@ This is a web application designed to verify the authenticity of Indian food lic
 ```
 fssai-verification/
 ├── admin/              # Admin dashboard and management
-├── api/                # REST API endpoints
+├── backend/                # REST API endpoints
 ├── assets/             # CSS, JavaScript, images, uploads
 ├── config/             # Database configuration
 ├── database/           # Database schema and sample data
@@ -84,11 +84,11 @@ The system uses four main tables:
 ## API Endpoints
 
 ### Verify License
-- **POST** `/api/verify-license.php`
+- **POST** `/backend/verify-license.php`
 - Accepts license number and returns verification status
 
 ### Submit Report
-- **POST** `/api/submit-report.php`
+- **POST** `/backend/submit-report.php`
 - Accepts report details and evidence, stores in database
 
 ## Installation Requirements
